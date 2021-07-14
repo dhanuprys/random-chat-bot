@@ -1,0 +1,20 @@
+{
+  "name": "random-person-bot",
+  "version": "1.0.0",
+  "description": "Random Person Whatsapp Bot",
+  "type": "module",
+  "exports": "./index.js",
+  "repository": "https://github.com/dhanuprys/random-person-bot",
+  "author": "Gede Dhanu Prnayasa <dhanuprys@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@open-wa/wa-automate": "^4.9.0",
+    "array-shuffle": "^2.0.0",
+    "lowdb": "^2.1.0",
+    "p-queue": "^7.1.0"
+  },
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  }
+}
