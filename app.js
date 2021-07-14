@@ -244,7 +244,28 @@ async function switchCommand({ client, message }) {
     }
 }
 
-function startApp(client) {
+async function processMessage(client, message) {
+    client.sendSeen(message.from);
+    
+    if (isAGroup(message.from)) {
+        return null;
+    }
+
+    if (Filter.isCommand(message.body)) {
+        switchCommand({ client, message });
+        return null;
+    }
+
+    if (!(await isActiveUser(message.from))) {
+        client.sendText(message.from, messageList.shortHelp);
+        return null;
+    }
+
+    const couple = await getCouple(message.from);
+    client.sendText(couple, message.body);
+}
+
+async function startApp(client) {
     // client.on('qr', qr => {
     //     qrcode.generate(qr, { small: true });
     // });
@@ -256,25 +277,15 @@ function startApp(client) {
     // client.on("group_join", (n) => sayHelloToNewGroup(client, n));
     // client.on("group_update", (n) => sayHelloToNewGroup(client, n));
 
-    client.onMessage(async (message) => {
-        if (isAGroup(message.from)) {
-            return null;
+    for (const message of (await client.getAllUnreadMessages())) {
+        if (message.from === '6282145277488@c.us') {
+            continue;
         }
 
-        if (Filter.isCommand(message.body)) {
-            switchCommand({ client, message });
-            return null;
-        }
+        queue.add(() => processMessage(client, message));
+    }
 
-        if (!(await isActiveUser(message.from))) {
-            client.sendText(message.from, messageList.shortHelp);
-            return null;
-        }
-
-        const couple = await getCouple(message.from);
-        client.sendText(couple, message.body);
-    });
-
+    client.onMessage(message => processMessage(client, message));
     queue.start();
 }
 
