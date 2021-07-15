@@ -1,7 +1,8 @@
-import wa from '@open-wa/wa-automate';
+import lowdb from "./storage.js";
 
-wa.create({ headless: false }).then(client => {
-    setInterval(() => {
-        client.sendText('6287776761549@c.us', 'haii');
-    }, 5000);
+lowdb().then(async (db) => {
+    await db.read();
+    console.log(db.data);
+
+    await db.write();
 });
