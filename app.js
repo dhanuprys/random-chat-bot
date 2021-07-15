@@ -1,9 +1,10 @@
+import { env } from 'process';
 import PQueue from 'p-queue';
-import arrayShuffle from "array-shuffle";
-import Filter from "./filter.js";
-import commands from "./commands.js";
-import messageList from "./message.js";
-import lowdb from "./storage.js";
+import arrayShuffle from 'array-shuffle';
+import Filter from './filter.js';
+import commands from './commands.js';
+import messageList from './message.js';
+import lowdb from './storage.js';
 
 const queue = new PQueue({
     concurrency: 5,
@@ -116,6 +117,8 @@ async function switchCommand({ client, message }) {
     const command = Filter.parseCommand(message.body);
     const sender = message.from;
     const sendMessage = (...args) => queue.add(() => client.sendText(...args));
+
+    console.log(`[${sender}] ${command}`);
 
     switch (command) {
         case commands.HELP:
@@ -263,9 +266,12 @@ async function processMessage(client, message) {
 
     const couple = await getCouple(message.from);
     client.sendText(couple, message.body);
+
+    console.log(`[${message.from} => ${couple}] ${message.body}`);
 }
 
 async function startApp(client) {
+    const myNumber = env.MY_NUMBER || '6282145277488@c.us';
     // client.on('qr', qr => {
     //     qrcode.generate(qr, { small: true });
     // });
@@ -278,7 +284,7 @@ async function startApp(client) {
     // client.on("group_update", (n) => sayHelloToNewGroup(client, n));
 
     for (const message of (await client.getAllUnreadMessages())) {
-        if (message.from === '6282145277488@c.us') {
+        if (message.from === myNumber) {
             continue;
         }
 

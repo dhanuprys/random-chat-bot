@@ -7,14 +7,15 @@ PRIVASI KAMU AKAN TETAP TERJAGA JIKA KAMU TIDAK MEMBERI TAHUNYA SENDIRI`,
     help: `🎇 *CATATAN*
 PRIVASI KAMU AKAN TETAP TERJAGA JIKA KAMU TIDAK MEMBERI TAHUNYA SENDIRI
 
-BERIKUT DAFTAR COMMAND YANG DAPAT DIGUNAKAN:
+BERIKUT DAFTAR PERINTAH YANG DAPAT DIGUNAKAN:
 🎈 */mulai* sama dengan command /help
 🎈 */help* digunakan untuk menampilkan bantuan
 🎈 */daftar* digunakan untuk mendaftar sebagai random player
 🎈 */cari* digunakan untuk mencari pasangan random player
 🎈 */tutup* sama dengan perintah /putuskan
-🎈 */stop* sama dengan perintah /putuskann
-🎈 */putuskan* digunakan untuk memutuskan sambungan chat (jika sedang terhubung satu sama lain)`,
+🎈 */stop* sama dengan perintah /putuskan
+🎈 */putuskan* digunakan untuk memutuskan sambungan chat (jika sedang terhubung satu sama lain)
+🎈 */skip* digunakan untuk memutuskan koneksi kemudian mencari pasangan baru`,
     findingFriend: `🚀 SEDANG MENCARI TEMAN
 🎈 INI MUNGKIN MENGGUNAKAN BEBERAPA WAKTU, JADI BERSABARLAH`,
     friendFounded: `😁 TEMAN DITEMUKAN`,
